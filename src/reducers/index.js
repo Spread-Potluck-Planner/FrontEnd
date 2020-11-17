@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { organizersReducer as organizersState } from './organizersReducer';
+import { userReducer as userState } from './userReducer';
 import { loginReducer as loginState } from './loginReducer';
 
 export const rootReducer = combineReducers({
-    organizersState,
+    userState,
     loginState
 })

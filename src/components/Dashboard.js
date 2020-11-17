@@ -1,6 +1,8 @@
 import {useEffect, useState} from 'react'
 import Navigation from './Navigation'
 import EventCard from './EventCard'
+
+import { getUser } from '../actions/userActions'
 import '../App.css'
 
 
@@ -50,8 +52,11 @@ const defaultUser = {
 const Dashboard = () => {
     const[userData,setUserData] = useState(defaultUser)
 
-    useEffect(() => { 
-        //getuserData
+    const id = 122
+
+    useEffect((id) => { 
+        getUser(id)
+        
     }, [])
 
 
