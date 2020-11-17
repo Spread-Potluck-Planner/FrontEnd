@@ -1,0 +1,15 @@
+.login-form {
+    width: 25%;
+    margin: auto
+} 
+.login-form label {
+    color: black;
+} 
+.login-btns{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+} 
+.login-btns button{
+    margin: 0px 10px;
+}
