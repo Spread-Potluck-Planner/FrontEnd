@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 import Navigation from './Navigation'
 import EventCard from './EventCard'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch} from 'react-redux'
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 import { FETCH_USER_SUCCESS } from '../actions/userActions'
 import '../App.css'
@@ -12,18 +12,7 @@ const defaultUser = {
     username: "default user", 
     full_name: "", 
     email: "", 
-    events: [ {
-        "event_id": 137,
-        "attending": true,
-        "organizer_id": 1,
-        "event_name": "My First Potluck",
-        "date": "2021-01-31T00:00:00.000Z",
-        "time": "11:00:00",
-        "description": "Garth brooks sup alta vista tootsie pop, neon colors braveheart generation Y khaki fluorescent oregon trail. Butterfly clips cable modem slacker .",
-        "address": "123 street",
-        "city": "dallas",
-        "state": "Texas"
-      }]
+    events: [ ]
 }
 
 
@@ -31,7 +20,8 @@ const Dashboard = () => {
     const[userData,setUserData] = useState(defaultUser)
     const id = localStorage.getItem('user')
     const dispatch = useDispatch()
-    const initialUserState = useSelector(state => state)
+
+    const emptyMessage = "There are no events listed for this user"
 
     useEffect(() => { 
         axiosWithAuth()
@@ -50,10 +40,10 @@ const Dashboard = () => {
     return (
         <div className='dashboard'>
             <Navigation />
-            {console.log('User State',initialUserState)}
+           
           <div className='dashboard-cards'>
           <h2>Welcome Back {userData.username}</h2>
-            {userData.events.map((event) => { 
+            {userData.events != emptyMessage  && userData.events.map((event) => { 
                 return <EventCard event={event} key={event.event_id}/>
             })}
          </div>
