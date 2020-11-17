@@ -37,7 +37,7 @@ const Dashboard = () => {
             console.log("There was an error retreving the data from the server", error)
         })
     },[])
-
+    
     const showCards = () => { 
         if(userData.events != emptyMessage) { 
             return userData.events.map((event) => { 
@@ -63,6 +63,8 @@ const Dashboard = () => {
           <div className='dashboard-cards'>
           <h2>Welcome Back {userData.username}</h2>
           {showCards()}
+          
+          
           
          </div>
         </div>
