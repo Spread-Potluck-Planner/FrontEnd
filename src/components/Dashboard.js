@@ -1,8 +1,11 @@
 import {useEffect, useState} from 'react'
 import Navigation from './Navigation'
 import EventCard from './EventCard'
+import { useDispatch } from 'react-redux'
 
-import { getUser } from '../actions/userActions'
+
+import {axiosWithAuth} from '../utils/axiosWithAuth'
+import { FETCH_USER_SUCCESS } from '../actions/userActions'
 import '../App.css'
 
 
@@ -22,42 +25,28 @@ const defaultUser = {
         "address": "123 street",
         "city": "dallas",
         "state": "Texas"
-      }, {
-        "event_id": 138,
-        "attending": true,
-        "organizer_id": 1,
-        "event_name": "Someone's Birthday",
-        "date": "2021-01-31T00:00:00.000Z",
-        "time": "11:00:00",
-        "description": "Doc martens dj jazzy jeff jurassic park sideburns fresh prince of bel-air. Full house nerf guns deep blue free willy, harrison ford george michael i'm king of the world big lebowski. ",
-        "address": "123 street",
-        "city": "Portland",
-        "state": "Oregon"
-      }, 
-      {
-        "event_id": 139,
-        "attending": true,
-        "organizer_id": 1,
-        "event_name": "Freaky Friday Halloween work Potluck",
-        "date": "2021-01-31T00:00:00.000Z",
-        "time": "11:00:00",
-        "description": "Frasier fanny packs des’ree did I do that. Pearl jam hook leggings sonic the hedgehog bomber jacket dawson’s creek this is your brain on drugs. Tae bo headbands ",
-        "address": "123 street",
-        "city": "Somewhere ",
-        "state": "CA"
       }]
 }
 
 
 const Dashboard = () => {
     const[userData,setUserData] = useState(defaultUser)
+    const id = localStorage.getItem('user')
+    const dispatch = useDispatch()
 
-    const id = 122
-
-    useEffect((id) => { 
-        getUser(id)
-        
-    }, [])
+    useEffect(() => { 
+        axiosWithAuth()
+        .get(`https://potluck-planner-bw.herokuapp.com/users/${id}`)
+        .then((response) => { 
+            console.log("Response here",response.data)
+            dispatch({type:FETCH_USER_SUCCESS, payload: response.data})
+            setUserData(response.data)
+            
+        })
+        .catch((error) => { 
+            console.log("There was an error retreving the data from the server", error)
+        })
+    },[])
 
 
     return (

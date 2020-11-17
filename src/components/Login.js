@@ -23,8 +23,8 @@ export default function Login() {
         axiosWithAuth()
             .post('https://potluck-planner-bw.herokuapp.com/users/login', user)
             .then(res => {
-                console.log("here is data",res.data)
                 localStorage.setItem('token', res.data.token)
+                localStorage.setItem('user', res.data.user_id)
                 dispatch(setLoggedIn)
                 push(`/user/${res.data.user_id}`)
             })

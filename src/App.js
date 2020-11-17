@@ -12,7 +12,6 @@ function App() {
     <div className="App">
     <h1 style={{textAlign: 'center'}}>Potluck Planner</h1>
       <header className="App-header">
-        
         <Link to='/register'/>
       </header>
       <Route exact path='/' component={Login} />

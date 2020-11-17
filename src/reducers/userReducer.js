@@ -1,11 +1,9 @@
 import { 
-    FETCH_USER_START,
     FETCH_USER_SUCCESS, 
     FETCH_USER_FAIL
 } from '../actions/userActions'
 
 const initialState = { 
-    isLoading: false,
     user_id: 0, 
     username: "", 
     full_name: "", 
@@ -15,18 +13,14 @@ const initialState = {
 
 export const userReducer = (state = initialState, action) => {
     switch(action.type){
-        case FETCH_USER_START: 
-            return { 
-                ...state, 
-                isLoading: true,
-            }
-
         case FETCH_USER_SUCCESS:
             return { 
                 ...state, 
-                isLoading: false,
-                
-
+                user_id: action.payload.user_id, 
+                username: action.payload.username, 
+                full_name: action.payload.full_name, 
+                email: action.payload.email, 
+                events: action.payload.events
             }
         default: 
             return state
