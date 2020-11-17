@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
-
-
+import Navigation from './Navigation'
 import EventCard from './EventCard'
+import '../App.css'
 
 
 const defaultUser = { 
@@ -57,8 +57,9 @@ const Dashboard = () => {
 
     return (
         <div className='dashboard'>
-            <h2>Welcome Back {userData.username}</h2>
+            <Navigation />
           <div className='dashboard-cards'>
+          <h2>Welcome Back {userData.username}</h2>
             {userData.events.map((event) => { 
                 return <EventCard event={event} key={event.event_id}/>
             })}
