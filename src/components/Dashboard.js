@@ -5,6 +5,7 @@ import { useDispatch} from 'react-redux'
 import {Button} from 'reactstrap'
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 import { FETCH_USER_SUCCESS } from '../actions/userActions'
+import emptyEvents from '../assets/sad.png'
 import '../App.css'
 
 
@@ -44,9 +45,10 @@ const Dashboard = () => {
             })
     } else { 
         return (
-        <div style={{marginTop: "100px"}}>
+        <div style={{marginTop: '100px'}}>
+            <img src={emptyEvents} style={{width: "30%", marginBottom: '20px'}} />
             <h4>Opps... looks like you don't have any upcoming events.</h4>
-            <p>Create one now</p>
+            <p style={{fontWeight: 'bold', fontSize:'18px'}}>Create one now</p>
             <Button color='primary'>New Spread</Button>
         </div>
         
