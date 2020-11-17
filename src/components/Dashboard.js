@@ -1,11 +1,11 @@
 import {useEffect, useState} from 'react'
 import Navigation from './Navigation'
 import EventCard from './EventCard'
-import { useDispatch } from 'react-redux'
-
-
+import { useDispatch} from 'react-redux'
+import {Button} from 'reactstrap'
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 import { FETCH_USER_SUCCESS } from '../actions/userActions'
+import emptyEvents from '../assets/sad.png'
 import '../App.css'
 
 
@@ -14,18 +14,7 @@ const defaultUser = {
     username: "default user", 
     full_name: "", 
     email: "", 
-    events: [ {
-        "event_id": 137,
-        "attending": true,
-        "organizer_id": 1,
-        "event_name": "My First Potluck",
-        "date": "2021-01-31T00:00:00.000Z",
-        "time": "11:00:00",
-        "description": "Garth brooks sup alta vista tootsie pop, neon colors braveheart generation Y khaki fluorescent oregon trail. Butterfly clips cable modem slacker .",
-        "address": "123 street",
-        "city": "dallas",
-        "state": "Texas"
-      }]
+    events: [ ]
 }
 
 
@@ -34,11 +23,12 @@ const Dashboard = () => {
     const id = localStorage.getItem('user')
     const dispatch = useDispatch()
 
+    const emptyMessage = "There are no events listed for this user"
+
     useEffect(() => { 
         axiosWithAuth()
         .get(`https://potluck-planner-bw.herokuapp.com/users/${id}`)
         .then((response) => { 
-            console.log("Response here",response.data)
             dispatch({type:FETCH_USER_SUCCESS, payload: response.data})
             setUserData(response.data)
             
@@ -48,15 +38,32 @@ const Dashboard = () => {
         })
     },[])
 
+    const showCards = () => { 
+        if(userData.events != emptyMessage) { 
+            return userData.events.map((event) => { 
+                return <EventCard event={event} key={event.event_id}/> 
+            })
+    } else { 
+        return (
+        <div style={{marginTop: '100px'}}>
+            <img src={emptyEvents} style={{width: "30%", marginBottom: '20px'}} />
+            <h4>Opps... looks like you don't have any upcoming events.</h4>
+            <p style={{fontWeight: 'bold', fontSize:'18px'}}>Create one now</p>
+            <Button color='primary'>New Spread</Button>
+        </div>
+        
+        )
+    }
+    }
 
     return (
         <div className='dashboard'>
             <Navigation />
+           
           <div className='dashboard-cards'>
           <h2>Welcome Back {userData.username}</h2>
-            {userData.events.map((event) => { 
-                return <EventCard event={event} key={event.event_id}/>
-            })}
+          {showCards()}
+          
          </div>
         </div>
       );

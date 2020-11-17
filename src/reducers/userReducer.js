@@ -3,7 +3,7 @@ import {
     FETCH_USER_FAIL
 } from '../actions/userActions'
 
-const initialState = { 
+const initialUserState = { 
     user_id: 0, 
     username: "", 
     full_name: "", 
@@ -11,7 +11,7 @@ const initialState = {
     events: []
 }
 
-export const userReducer = (state = initialState, action) => {
+export const userReducer = (state = initialUserState, action) => {
     switch(action.type){
         case FETCH_USER_SUCCESS:
             return { 
