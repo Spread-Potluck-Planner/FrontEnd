@@ -56,11 +56,11 @@ const Dashboard = () => {
 
 
     return (
-        <div >
-            <h1>Welcome Back {userData.username}</h1>
+        <div className='dashboard'>
+            <h2>Welcome Back {userData.username}</h2>
           <div className='dashboard-cards'>
             {userData.events.map((event) => { 
-                return <EventCard event={event}/>
+                return <EventCard event={event} key={event.event_id}/>
             })}
          </div>
         </div>

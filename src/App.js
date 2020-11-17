@@ -4,6 +4,7 @@ import PrivateRoute from './components/PrivateRoute'
 import Organizer_Home from './components/Organizer_Home'
 import Login from './components/Login'
 import Register from './components/Register'
+import Dashboard from './components/Dashboard'
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
       </header>
       <Route exact path='/' component={Login} />
       <Route path='/register' component={Register} />
-      <PrivateRoute exact path='/home_page' component={Organizer_Home} />
+      <PrivateRoute exact path='/home_page' component={Dashboard} />
     </div>
     </Router>
   );

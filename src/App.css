@@ -1,1 +1,49 @@
+.dashboard {
+  text-align: center;
+  display: flex;
+}
 
+.main-container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+/**** Navigation ****/
+#nav-logo {
+  width: 180px;
+  margin-bottom: 50px;
+}
+#sidebar {
+  width: 175px;
+  height: 100%;
+  position: fixed;
+  align-self: flex-start;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+  background: #91ddff;
+  color: white;
+}
+.nav-menu {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-menu:hover {
+  font-weight: bold;
+  color: white;
+}
+
+.event-card {
+  width: 45%;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+
+.event-card-btn {
+  display: flex;
+  justify-content: space-between;
+}
