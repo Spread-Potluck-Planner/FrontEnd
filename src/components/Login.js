@@ -23,10 +23,10 @@ export default function Login() {
         axiosWithAuth()
             .post('https://potluck-planner-bw.herokuapp.com/users/login', user)
             .then(res => {
-                console.log(res.data)
                 localStorage.setItem('token', res.data.token)
+                localStorage.setItem('user', res.data.user_id)
                 dispatch(setLoggedIn)
-                push('/home_page')
+                push(`/user/${res.data.user_id}`)
             })
             .catch(err => {
                 console.log('There was an error signing in', err)

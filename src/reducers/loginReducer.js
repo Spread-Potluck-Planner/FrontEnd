@@ -2,6 +2,7 @@ import {LOG_IN_USER, LOG_OUT_USER} from '../utils/reduxVariables'
 
 const initialState = {
     loggedIn: false,
+   
 }
 
 export const loginReducer = (state = initialState, action) => {
