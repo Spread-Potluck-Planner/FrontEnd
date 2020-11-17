@@ -1,7 +1,7 @@
 
 
 const initialState = {
-
+    
 }
 
 export const organizersReducer = (state = initialState, action) => {

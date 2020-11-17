@@ -2,31 +2,23 @@ import React from 'react';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
-import {Form, Button, Label, Input, FormGroup} from 'reactstrap';
+import {Col, Form, Button, Label, Input, FormGroup} from 'reactstrap';
 import {useDispatch} from 'react-redux'
 import {setLoggedIn} from '../actions/loginActions'
 import {useHistory} from 'react-router-dom';
+import '../styling/login.css'
 
 export default function Login() {
     const {push} = useHistory()
     const dispatch = useDispatch();
 
-    const {register, handleSubmit, errors, reset} = useForm({
+    const {register, handleSubmit, errors} = useForm({
         defaultValues: {
             username: '',
             password: '',
         }
     })
 
-    // //tracking user input
-    // const changeHandler =  (e) => {
-    //     setCredentials({
-    //         ...credentials,
-    //         [e.target.name]: e.target.value
-    //     })
-    // }
-
-    //posting to verify if user has account
     const submitHandler = (user) => {
         axiosWithAuth()
             .post('https://potluck-planner-bw.herokuapp.com/users/login', user)
@@ -45,6 +37,7 @@ export default function Login() {
         <div className='login-form'>
             <Form onSubmit={handleSubmit(submitHandler)}>
                 <FormGroup>
+                    <Col md={12}>
                     <Label for='username'>User Name</Label>
                     <Input 
                         name='username'
@@ -54,8 +47,10 @@ export default function Login() {
                         innerRef={register({required: 'Username is required'})}
                     />
                     <ErrorMessage errors={errors} name='password' />
+                </Col>    
                 </FormGroup>
                 <FormGroup>
+                    <Col md={12}>
                     <Label for='password'>Password</Label>
                     <Input 
                         name='password'
@@ -65,9 +60,12 @@ export default function Login() {
                         innerRef={register({required: 'Passowrd is required'})}
                     />
                     <ErrorMessage errors={errors} name='password' />
+                    </Col>
                 </FormGroup>
-                <Button type='submit' color='primary'>Sign In</Button>
-                <Button type='button' color='gray' onClick={() => push('/register')}>Sign Up</Button>
+                <div className='login-btns'>
+                    <Button type='submit' size='lg' color='success'>Sign In</Button>
+                    <Button type='button' size='lg' outline color='danger' onClick={() => push('/register')}>Sign Up</Button>
+                </div>
             </Form>
         </div>
     )
