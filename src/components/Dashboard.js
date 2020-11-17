@@ -36,6 +36,22 @@ const Dashboard = () => {
         })
     },[])
 
+    const showCards = () => { 
+        if(userData.events != emptyMessage) { 
+            return userData.events.map((event) => { 
+                return <EventCard event={event} key={event.event_id}/> 
+            })
+    } else { 
+        return (
+        <div>
+            Opps... looks like you don't have any upcoming events.
+            <p>Create one now</p>
+            <button>New Spread</button>
+        </div>
+        
+        )
+    }
+    }
 
     return (
         <div className='dashboard'>
@@ -43,9 +59,8 @@ const Dashboard = () => {
            
           <div className='dashboard-cards'>
           <h2>Welcome Back {userData.username}</h2>
-            {userData.events != emptyMessage  && userData.events.map((event) => { 
-                return <EventCard event={event} key={event.event_id}/>
-            })}
+          {showCards()}
+          
          </div>
         </div>
       );
