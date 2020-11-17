@@ -5,6 +5,7 @@ import Organizer_Home from './components/Organizer_Home'
 import Login from './components/Login'
 import Register from './components/Register'
 import Dashboard from './components/Dashboard'
+import AddNewEvent from './components/AddNewEvent'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route exact path='/' component={Login} />
       <Route path='/register' component={Register} />
       <PrivateRoute exact path='/user/:id' component={Dashboard} />
+      <PrivateRoute exact path='/user/:id/add-event' component={AddNewEvent} />
     </div>
     </Router>
   );
