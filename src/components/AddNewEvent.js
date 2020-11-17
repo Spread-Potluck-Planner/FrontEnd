@@ -1,7 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom'
 import { ErrorMessage } from '@hookform/error-message';
-
+import { axiosWithAuth } from '../utils/axiosWithAuth'
 import {Button, FormGroup, Input, Form} from 'reactstrap'
 
 import Navigation from './Navigation'
@@ -11,7 +12,35 @@ const AddNewEvent = () => {
         mode: "onBlur",
   
       });
-    const onSubmit = data => console.log(data);
+    const history = useHistory()
+    const id = localStorage.getItem('user')
+    const onSubmit = (data) => { 
+        const userId = parseInt(id)
+        const newSpread = { 
+            organizer_id: userId, 
+            event_name: data.Name,
+            date: data.Date,
+            time: data.Time,
+            description: data.Description,
+            address: data.Address,
+            city: data.City,
+            state: data.State
+        }
+        addSpread(newSpread);
+        history.push(`/user/${id}`)
+
+    }
+
+    const addSpread = (newSpread) => { 
+        axiosWithAuth()
+        .post(`https://potluck-planner-bw.herokuapp.com/users/${id}/events`, newSpread)
+        .then((response) => { 
+            console.log(response.data)
+        })
+        .catch((error) => { 
+            console.log("There was an error creating your event", error)
+        })
+    }
     
   
     return (
