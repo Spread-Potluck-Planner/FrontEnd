@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react'
 import Navigation from './Navigation'
 import EventCard from './EventCard'
 import { useDispatch} from 'react-redux'
+import {Button} from 'reactstrap'
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 import { FETCH_USER_SUCCESS } from '../actions/userActions'
 import '../App.css'
@@ -43,10 +44,10 @@ const Dashboard = () => {
             })
     } else { 
         return (
-        <div>
-            Opps... looks like you don't have any upcoming events.
+        <div style={{marginTop: "100px"}}>
+            <h4>Opps... looks like you don't have any upcoming events.</h4>
             <p>Create one now</p>
-            <button>New Spread</button>
+            <Button color='primary'>New Spread</Button>
         </div>
         
         )
