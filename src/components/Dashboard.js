@@ -1,9 +1,7 @@
 import {useEffect, useState} from 'react'
 import Navigation from './Navigation'
 import EventCard from './EventCard'
-import { useDispatch } from 'react-redux'
-
-
+import { useDispatch, useSelector } from 'react-redux'
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 import { FETCH_USER_SUCCESS } from '../actions/userActions'
 import '../App.css'
@@ -33,12 +31,12 @@ const Dashboard = () => {
     const[userData,setUserData] = useState(defaultUser)
     const id = localStorage.getItem('user')
     const dispatch = useDispatch()
+    const initialUserState = useSelector(state => state)
 
     useEffect(() => { 
         axiosWithAuth()
         .get(`https://potluck-planner-bw.herokuapp.com/users/${id}`)
         .then((response) => { 
-            console.log("Response here",response.data)
             dispatch({type:FETCH_USER_SUCCESS, payload: response.data})
             setUserData(response.data)
             
@@ -52,6 +50,7 @@ const Dashboard = () => {
     return (
         <div className='dashboard'>
             <Navigation />
+            {console.log('User State',initialUserState)}
           <div className='dashboard-cards'>
           <h2>Welcome Back {userData.username}</h2>
             {userData.events.map((event) => { 
