@@ -2,11 +2,14 @@ import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button
   } from 'reactstrap';
+import {useHistory} from 'react-router-dom';
+import React, {useState} from 'react';
 
 const EventCard = (props) => {
+const {push} = useHistory()
 const { event } = props
     return (
-        <div>
+        <div onClick={() => push(`/events/${props.event.event_id}`)}>
             <Card className='shadow event-card'>
                 <CardImg src="sample" alt="Card image cap" />
                 <CardBody>

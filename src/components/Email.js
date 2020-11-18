@@ -14,8 +14,9 @@ import { API_KEY } from '../utils/reduxVariables'
 const EmailForm = () => {
     const userId = 'user_80CtuhuL9K2DLvDN8Cp7x'
     const [email, setEmail] = useState({ 
-        name: '',
-        email: ''
+        organizer: '',
+        email: '', 
+        spread_event: ''
     })
     const { register, handleSubmit, errors, reset, watch } = useForm({ 
         mode: "onBlur",
