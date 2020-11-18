@@ -8,23 +8,18 @@ import { Button,
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom'
 import { ErrorMessage } from '@hookform/error-message';
-
+import { useSelector } from 'react-redux'
 import emailjs from 'emailjs-com';
 import { API_KEY } from '../utils/reduxVariables'
 
 import fries from '../assets/fries.jpg'
 
 const EmailModal = (props) => {
+  const event = useSelector(state => state.userState);
   const {
     className
   } = props;
   const [modal, setModal] = useState(true);
-  const [email, setEmail] = useState({ 
-    organizer: '', //full name 
-    email: '', //from input 
-    message: '', //from input 
-    spread_event: '' //details
-})
 
   const { register, handleSubmit, errors, reset, watch } = useForm({ 
       mode: "onBlur",
@@ -35,25 +30,33 @@ const EmailModal = (props) => {
 
   const onSubmit = (data) => {
       console.log(data)
-      
-   }
+      const emailToSend = { 
+          email:data.email, 
+          message: data.message, 
+          organizer: event.full_name,
+          spread_event: 'need url from event'
+      }
 
-
-   const sendEmail = (data) => { 
-    emailjs.send("service_t9ou68h","template_8w63fep", data, API_KEY)
+      emailjs.send("service_t9ou68h","template_8w63fep", emailToSend, API_KEY)
     .then((message) => { 
         console.log(message)
     })
     .catch((error) => { 
         console.log("There was an error with your invite", error)
     })
+
+    push(`/user/${id}`)
    }
+
+
+    
+    
+   
 
   const toggle = () => push(`/user/${id}`);
 
   return (
     <div className='dashboard-cards'> 
-      
       <Modal isOpen={modal} fade={false} toggle={toggle} className={className} >
         <ModalHeader toggle={toggle} >
             <div style={{display:'flex', flexDirection: 'row'}}>
