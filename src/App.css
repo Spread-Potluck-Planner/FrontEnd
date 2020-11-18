@@ -16,7 +16,7 @@
   margin-bottom: 50px;
 }
 #sidebar {
-  width: 9%;
+  width: 14%;
   height: 100%;
   position: fixed;
   align-self: flex-start;
@@ -66,4 +66,28 @@
 .add-event-container textarea {
   height: 100px;
   margin-top: 10px;
+}
+
+.drop-down-group {
+  display: flex;
+  padding: 1%;
+}
+.drop-down-group p {
+  margin: 5px;
+}
+
+#share-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#share-form {
+  width: 90%;
+  margin: 0 auto;
+  margin: 5px;
+}
+
+#share-form textarea {
+  margin-top: 5px;
+  height: 150px;
 }
