@@ -12,8 +12,10 @@ import { API_KEY } from '../utils/reduxVariables'
 
 
 const EmailForm = () => {
+    const userId = 'user_80CtuhuL9K2DLvDN8Cp7x'
     const [email, setEmail] = useState({ 
-        name: ''
+        name: '',
+        email: ''
     })
     const { register, handleSubmit, errors, reset, watch } = useForm({ 
         mode: "onBlur",
@@ -23,9 +25,14 @@ const EmailForm = () => {
     const id = localStorage.getItem('user')
     const onSubmit = (data) => {
         
-        setEmail(data)
-        console.log(email)
-        
+        emailjs.send("service_t9ou68h","template_8w63fep", data, userId)
+        .then((message) => { 
+            console.log(message)
+        })
+        .catch((error) => { 
+            console.log("There was an error with your invite", error)
+        })
+
      }
 
      
@@ -41,6 +48,14 @@ const EmailForm = () => {
                 innerRef={register({required: "You must enter a Title", maxLength: 80})    } 
                 />
                 <ErrorMessage errors={errors} name="name" />
+                
+                <Input type="text" 
+                placeholder="Email" 
+                name="email" 
+                invalid={errors.Name ? true : false}
+                innerRef={register({required: "You must enter a Title", maxLength: 80})    } 
+                />
+                <ErrorMessage errors={errors} name="email" />
 
                 <FormGroup>
                 <Button color ='primary' type="submit" style={{width:'30%', margin: '20px 10px 20px 10px', }}>Submit</Button>
