@@ -20,9 +20,13 @@ function App() {
       <Route exact path='/' component={Login} />
       <Route path='/register' component={Register} />
       <PrivateRoute exact path='/user/:id' component={Dashboard} />
+
       <PrivateRoute exact path='/events/:id' component={SinglePotluck} />
       <PrivateRoute exact path='/events/edit/:id' component={EditPotluck} />
       <Route exact path='/addNewEvent' component={AddNewEvent} />
+
+      <PrivateRoute exact path='/user/:id/add-event' component={AddNewEvent} />
+
     </div>
     </Router>
   );
