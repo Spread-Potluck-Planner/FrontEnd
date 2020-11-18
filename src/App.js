@@ -8,7 +8,8 @@ import Dashboard from './components/Dashboard'
 import SinglePotluck from './components/SinglePotluck'
 import EditPotluck from './components/EditPotluck'
 import AddNewEvent from './components/AddNewEvent'
-import Email from './components/Email'
+
+import EmailModal from './components/EmailModal'
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
       <Route exact path='/addNewEvent' component={AddNewEvent} />
 
       <PrivateRoute exact path='/user/:id/add-event' component={AddNewEvent} />
-      <PrivateRoute exact path='/user/:id/email' component={Email} />
+      <PrivateRoute exact path='/events/:id/email' component={EmailModal} />
 
     </div>
     </Router>

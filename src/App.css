@@ -82,7 +82,12 @@
 }
 
 #share-form {
-  width: 50%;
+  width: 90%;
   margin: 0 auto;
-  margin-top: 100px; /*working view only*/
+  margin: 5px;
+}
+
+#share-form textarea {
+  margin-top: 5px;
+  height: 150px;
 }
