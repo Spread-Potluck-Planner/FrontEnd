@@ -1,9 +1,12 @@
 import React from 'react'; 
 import { Nav, NavLink, NavItem, NavbarBrand } from 'reactstrap'
 import logo from '../assets/logo.png'
+import {useHistory} from 'react-router-dom'
+import Dashboard from './Dashboard';
 
 
 const Navigation = () => {
+  const id = localStorage.getItem('user')
     return (
         <div>
             <Nav>
@@ -11,7 +14,7 @@ const Navigation = () => {
             <NavbarBrand><img src={logo} id='nav-logo'/></NavbarBrand>
             <ul className="nav flex-column" >
                 <NavItem>
-                   <NavLink className="nav-menu" href='/'>Account Home</NavLink> 
+                   <NavLink className="nav-menu" href={`/user/${id}`}>Account Home</NavLink> 
                 </NavItem>
                 <NavItem>
                    <NavLink className="nav-menu" href='/'>Current Spreads</NavLink> 
