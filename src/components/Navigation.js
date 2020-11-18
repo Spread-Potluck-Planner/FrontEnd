@@ -17,7 +17,7 @@ const Navigation = () => {
                    <NavLink className="nav-menu" href='/'>Current Spreads</NavLink> 
                 </NavItem>
                 <NavItem>
-                   <NavLink className="nav-menu" href='/'>Create a Spread</NavLink> 
+                   <NavLink className="nav-menu" href='/addNewEvent'>Create a Spread</NavLink> 
                 </NavItem>
                 <NavItem>
                    <NavLink className="nav-menu" href='/'>Edit Account</NavLink> 

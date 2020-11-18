@@ -47,3 +47,23 @@
   display: flex;
   justify-content: space-between;
 }
+
+.add-event-dashboard {
+  text-align: center;
+  display: flex;
+}
+
+.add-event-container {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  padding: 1%;
+}
+.add-event-container input {
+  height: 40px;
+  margin-top: 10px;
+}
+.add-event-container textarea {
+  height: 100px;
+  margin-top: 10px;
+}

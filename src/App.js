@@ -7,6 +7,7 @@ import Register from './components/Register'
 import Dashboard from './components/Dashboard'
 import SinglePotluck from './components/SinglePotluck'
 import EditPotluck from './components/EditPotluck'
+import AddNewEvent from './components/AddNewEvent'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <PrivateRoute exact path='/user/:id' component={Dashboard} />
       <PrivateRoute exact path='/events/:id' component={SinglePotluck} />
       <PrivateRoute exact path='/events/edit/:id' component={EditPotluck} />
+      <Route exact path='/addNewEvent' component={AddNewEvent} />
     </div>
     </Router>
   );

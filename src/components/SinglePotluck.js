@@ -4,7 +4,6 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, Ca
 import {useParams, useHistory} from 'react-router-dom'
 import Navigation from '../components/Navigation'
 import {fetchEvent} from '../actions/userActions'
-import EditPotluck from '../components/EditPotluck'
 import classnames from 'classnames'
 // import {fetchGuests} from '../actions/userActions'
 import '../styling/SinglePotluck.css'
@@ -54,7 +53,8 @@ export default function SinglePotluck() {
                         }
                     </CardText>
                 </CardBody>
-                <Button type='button' onClick={ () => push(`/events/edit/${id}`) } color='danger'>Edit</Button>
+                <Button type='button' onClick={ () => push(`/events/edit/${id}`) } color='secondary'>Edit</Button>
+                <Button type='button' onClick={() => push(`/user/${id}`)} color='danger' >Cancel</Button>
                 <Nav tabs>
                     <NavItem>
                         <NavLink

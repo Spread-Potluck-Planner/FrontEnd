@@ -1,122 +1,131 @@
-import React, {useEffect, useState} from 'react'
-import {useSelector, useDispatch} from 'react-redux'
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardBody, CardText, Row, Col } from 'reactstrap';
+import React, {useEffect} from 'react'
+import {Button, FormGroup, Input, Form} from 'reactstrap'
+import { useForm } from 'react-hook-form';
 import {useParams, useHistory} from 'react-router-dom'
+import { ErrorMessage } from '@hookform/error-message';
+import { axiosWithAuth } from '../utils/axiosWithAuth'
 import Navigation from '../components/Navigation'
-import {fetchEvent} from '../actions/userActions'
-import classnames from 'classnames'
-// import {fetchGuests} from '../actions/userActions'
-import '../styling/SinglePotluck.css'
+import '../App.css'
 
 export default function EditPotluck() {
-    const event = useSelector(state => state.eventState);
-    console.log(event)
-    const dispatch = useDispatch()
-    // const guests = useSelector(state => state.guestsState)
-    const [activeTab, setActiveTab] = useState('1');
     const {id} = useParams()
     const {push} = useHistory()
-    const eventDate = new Date(event.date).toUTCString().split('').splice(0,17).join('')
+
+    const { register, handleSubmit, errors, reset } = useForm({ 
+        mode: "onBlur",
+        defaultValues: {
+            organizer_id: '', 
+            event_name: '',
+            date: '',
+            time: '',
+            description: '',
+            address: '',
+            city: '',
+            state: ''
+        }
+      });
 
     useEffect(() => {
-        dispatch(fetchEvent(id))
-        // dispatch(fetchGuests(id))
+        axiosWithAuth()
+        .get(`https://potluck-planner-bw.herokuapp.com/events/${id}`)
+            .then(res => {
+                console.log(res)
+                reset({
+                    organizer_id: res.data.organizer_id, 
+                    event_name: res.data.event_name,
+                    date: new Date(res.data.date).toUTCString().split('').splice(0,17).join(''),
+                    time: res.data.time,
+                    description: res.data.description,
+                    address: res.data.address,
+                    city: res.data.city,
+                    state: res.data.state
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }, [])
-
-    const toggle = tab => {
-        if(activeTab !== tab) setActiveTab(tab)
+    
+    const onSubmit = newUser => {
+        axiosWithAuth()
+            .put(`https://potluck-planner-bw.herokuapp.com/events/${id}`, newUser)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        push(`/events/${id}`)
     }
     
     return (
-        <div className='dashboard'>
+        <div className='add-event-dashboard'>
             <Navigation />
-            <div className='single-page-potluck'>
-            <Card>
-                <CardBody>
-                    <CardTitle tag="h5">{event.event_name.charAt(0).toUpperCase() + event.event_name.slice(1)}</CardTitle>
-                </CardBody>
-                <img width="100%" src="../assets/logo.png" alt="Card image cap" />
-                <CardBody>
-                    <CardText>
-                        Location: {
-                        event.address 
-                        + ', ' + 
-                        event.city.charAt(0).toUpperCase() + event.city.slice(1)
-                        + ', ' + 
-                        event.state.charAt(0).toUpperCase() + event.state.slice(1)
-                        }   
-                    </CardText>
-                    <CardText>
-                        Date: {
-                        event.time 
-                        + ' ' +
-                        eventDate
-                        }
-                    </CardText>
-                </CardBody>
-                <Button type='button' onClick={ () => <EditPotluck /> } color='danger'>Edit</Button>
-                <Nav tabs>
-                    <NavItem>
-                        <NavLink
-                        className={classnames({ active: activeTab === '1'})}
-                        onClick={() => { toggle('1'); }}
-                        >
-                            Guests
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink
-                        className={classnames({ active: activeTab === '2'})}
-                        onClick={() => { toggle('2'); }}        
-                        >
-                            Description
-                        </NavLink>
-                    </NavItem>
-                </Nav>
-                <TabContent activeTab={activeTab}>
-                    <TabPane tabId='1' >
-                        <Row>
-                            <Col sm='12'>
-                            <h4>Guests:</h4>
-                            {event.guests.map(guest => {
-                                return <p key={guest.user_id}>{guest.full_name.charAt(0).toUpperCase() + guest.full_name.slice(1)} 
-                                {/* dont know if this will work but can't test it */}
-                                {typeof event.recipes !== 'undefined' && event.recipes.filter(recipe => {
-                                    if(guest.user_id === recipe.user_id){
-                                        return <p>{':' + recipe}</p>
-                                    }
-                                })}</p>
-                            })}
-                            </Col>
-                        </Row>
-                    </TabPane>
-                    <TabPane tabId='2'>
-                        <Row>
-                            <Col sm='12'>
-                                <h4>Description:</h4>
-                                <p>{event.description}</p>
-                            </Col>
-                        </Row>
-                    </TabPane>
-                </TabContent>
-            </Card>
-                {/* <h2>{event.event_name.charAt(0).toUpperCase() + event.event_name.slice(1)}</h2>
-                <h4>
-                    Location: {
-                    event.address 
-                    + ', ' + 
-                    event.city.charAt(0).toUpperCase() + event.city.slice(1)
-                    + ', ' + 
-                    event.state.charAt(0).toUpperCase() + event.state.slice(1)
-                    }
-                </h4>
-                <h4>
-                    Date: {
-                    event.time 
-                    + ' ' +
-                    eventDate
-                    }
-                </h4> */}
+            <div className='add-event-dashboard'>
+                <Form onSubmit={handleSubmit(onSubmit)} className='shadow add-event-container'>
+                    
+                    <Input type="text" 
+                    placeholder="Title" 
+                    name="event_name" 
+                    invalid={errors.event_name ? true : false}
+                    innerRef={register({required: "You must enter a Title", maxLength: 80})    } 
+                    />
+                    <ErrorMessage errors={errors} name="event_name" />
+
+                    <Input type="text" 
+                    placeholder="date" 
+                    name="date" 
+                    invalid={errors.date ? true : false}
+                    innerRef={register({required: "date is required", maxLength: 100})   } 
+                    />
+                    <ErrorMessage errors={errors} name="date" />
+
+                    <Input type="text" 
+                    placeholder="Time" 
+                    name="time" 
+                    invalid={errors.time ? true : false}
+                    innerRef={register({required: "What time would you like people to come?", maxLength: 10})    } 
+                    />
+                    <ErrorMessage errors={errors} name="time" />
+
+                    <Input type='textarea' 
+                    placeholder="Description goes here" 
+                    name="description" 
+                    invalid={errors.description ? true : false}
+                    innerRef={register({required: "Tell us a little something about your potluck.."})} 
+                    />
+                    <ErrorMessage errors={errors} name="description" />
+
+                    <Input type="text" 
+                    placeholder="address" 
+                    name="address" 
+                    invalid={errors.address ? true : false}
+                    innerRef={register({required: "What is the Address?"})} 
+                    />
+                    <ErrorMessage errors={errors} name="address" />
+
+                    <Input type="text" 
+                    placeholder="City" 
+                    name="city" 
+                    invalid={errors.city ? true : false}
+                    innerRef={register({required: "City is required :("})} 
+                    />
+                    <ErrorMessage errors={errors} name="city" />
+
+                    <Input type="text" 
+                    placeholder="State" 
+                    name="state" 
+                    invalid={errors.state ? true : false}
+                    innerRef={register({required: "State is required :("})} 
+                    />
+                    <ErrorMessage errors={errors} name="state" />
+
+                    <FormGroup>
+                        <Button color ='primary' type="submit" style={{width:'30%', margin: '20px 10px 20px 10px', }}>Confirm Changes</Button>
+                        <Button onClick={() => push(`/events/${id}`)} color='danger' style={{width:'30%', margin: '20px 10px 20px 10px', }}>Cancel</Button>
+                    </FormGroup>
+                    
+                </Form>
             </div>
         </div>
     )
