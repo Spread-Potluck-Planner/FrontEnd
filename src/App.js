@@ -6,6 +6,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Dashboard from './components/Dashboard'
 import AddNewEvent from './components/AddNewEvent'
+import Email from './components/Email'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path='/register' component={Register} />
       <PrivateRoute exact path='/user/:id' component={Dashboard} />
       <PrivateRoute exact path='/user/:id/add-event' component={AddNewEvent} />
+      <PrivateRoute exact path='/user/:id/email' component={Email} />
     </div>
     </Router>
   );
