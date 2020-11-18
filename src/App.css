@@ -67,3 +67,22 @@
   height: 100px;
   margin-top: 10px;
 }
+
+.drop-down-group {
+  display: flex;
+  padding: 1%;
+}
+.drop-down-group p {
+  margin: 5px;
+}
+
+#share-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#share-form {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 100px; /*working view only*/
+}

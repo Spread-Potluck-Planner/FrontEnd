@@ -4,6 +4,7 @@ import {
   } from 'reactstrap';
 import {useHistory} from 'react-router-dom';
 import React, {useState} from 'react';
+import food_logo from '../assets/food_img.jpg'
 
 const EventCard = (props) => {
 const {push} = useHistory()
@@ -11,10 +12,13 @@ const { event } = props
     return (
         <div onClick={() => push(`/events/${props.event.event_id}`)}>
             <Card className='shadow event-card'>
-                <CardImg src="sample" alt="Card image cap" />
+                <CardImg src={food_logo} alt="Card image cap" />
                 <CardBody>
+                    <div id='share-container'>
+                        <Button color='primary' size="sm">Share</Button>
+                    </div>
                     <CardTitle tag="h5">{event.event_name}</CardTitle>
-                    <CardSubtitle tag="h6" className="mb-2 text-muted">Card subtitle</CardSubtitle>
+                    
                     <CardText>{event.description}</CardText>
                     <div className='event-card-btn'>
                         <Button color='primary' size="sm">See Who's Coming</Button>
