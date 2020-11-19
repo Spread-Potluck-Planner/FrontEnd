@@ -61,7 +61,8 @@ export default function EditPotluck() {
     return (
         <div className='add-event-dashboard'>
             <Navigation />
-            <div className='add-event-dashboard'>
+            <div className='dashboard-cards'>
+                <h2>What would you like to edit?</h2>
                 <Form onSubmit={handleSubmit(onSubmit)} className='shadow add-event-container'>
                     
                     <Input type="text" 

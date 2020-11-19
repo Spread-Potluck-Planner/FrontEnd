@@ -1,8 +1,150 @@
-.single-page-potluck {
-    margin: 5% auto auto 14.5%;
-    border: 2px solid black;
-    width: 80%;
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
-.single-page-potluck button {
-    width: 5%;
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.single-page-potluck {
+    margin: 3% auto 3% 22%;
+    border: 3px solid #3D3D3D;
+    border-radius: 7px;
+    width: 70%;
+}
+.targeting-background-div{
+    background-color: #F9F9F9;
+}
+#card-body-fixer-upper{
+    border:none;
+    padding:none;
+}
+.card h4 {
+    color: #3D3D3D;
+    width:25%;
+    margin:auto;
+    padding-bottom: .8%;
+    font-size: 50px;
+    /* border-bottom: 3px solid #3D3D3D;  */
+}
+.card h6{
+    text-align:center;
+    margin: 2% auto 2% auto;
+    font-size:35px;
+    color:#3D3D3D;
+    border-bottom: 3px solid #3D3D3D;
+    width:12.5%;
+}
+.nav{
+    border-color: #3D3D3D
+}
+.nav-link {
+    color: #3D3D3D;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.nav-tabs{
+    background-color: #FE7C5C;
+    border: 5px solid #FE7C5C;
+}
+#single-event-p p{
+    font-size:25px;
+}
+#styled-p-nav {
+    font-size:20px;
+    color: #3D3D3D
+}
+.single-page-potluck img {
+    margin:auto;
+    width:85%;
+    border-radius: 10px;
+}
+#single-event-p{
+    font-size:25px;
+    color: #3D3D3D;
+    margin-bottom:.5%;
+}
+.event-info-labels{
+    font-size:30px;
+    font-weight:bold;
+}
+.event-info-border{
+    border: 1px dashed #3D3D3D;
+    width:20%;
+    margin: auto;
+}
+.single-page-button{
+    display: flex;
+    justify-content: space-between;
+}
+.single-page-button button {
+    width: 10%;
+    font-size:18px;
+    font-weight:bold;
+    margin-top:3%;
+    padding: .75% 
+}
+#delete-btn{
+    background-color: #F4313F;
+    border:none;
+    position:absolute;
+    margin-left:7.5%;
+}
+#edit-btn{
+    background-color: #DC9A53;
+    border:none;
+    margin-left:45%;
+}
+#back-btn{
+    background-color: #FDA6D0;
+    border:none;
+    margin-right:7.5%;
+}
+.dashboard-cards {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    flex-direction: column;
+    margin-top:3%;
+}
+.dashboard-cards h2{
+    color: #3D3D3D;
+    margin-bottom:5%;
 }
