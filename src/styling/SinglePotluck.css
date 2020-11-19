@@ -65,8 +65,8 @@ table {
 }
 .card h6{
     text-align:center;
-    margin: 2% auto 2% auto;
-    font-size:35px;
+    margin: 2% auto 1% auto;
+    font-size:25px;
     color:#3D3D3D;
     border-bottom: 3px solid #3D3D3D;
     width:12.5%;
@@ -75,14 +75,22 @@ table {
     border-color: #3D3D3D
 }
 .nav-link {
-    color: #3D3D3D;
-    font-size: 20px;
-    font-weight: bold;
+    color: white;
+    font-size: 18px;
     text-decoration: none;
+    /* border: 2px solid white; */
 }
+.nav-link:hover{
+    font-weight: bold;
+    color: white;
+    /* border: 2px solid white; */
+}
+/* .nav-item{
+    border: 1px solid #3D3D3D;
+} */
 .nav-tabs{
     background-color: #FE7C5C;
-    border: 5px solid #FE7C5C;
+    border: 3px solid #FE7C5C;
 }
 #single-event-p p{
     font-size:25px;
@@ -119,23 +127,71 @@ table {
     font-size:18px;
     font-weight:bold;
     margin-top:3%;
-    padding: .75% 
+    padding: .70% 
 }
 #delete-btn{
     background-color: #F4313F;
-    border:none;
     position:absolute;
     margin-left:7.5%;
+    border: 2px solid #F4313F;
+}
+#delete-btn:hover {
+    color: #F4313F;
+    font-weight:bold;
+    background-color: white;
+    border: 2px solid #F4313F;
 }
 #edit-btn{
     background-color: #DC9A53;
-    border:none;
     margin-left:45%;
+    border: 2px solid #DC9A53;
+}
+#edit-btn:hover {
+    color: #DC9A53;
+    font-weight:bold;
+    background-color: white;
+    border: 2px solid #DC9A53;
 }
 #back-btn{
     background-color: #FDA6D0;
-    border:none;
     margin-right:7.5%;
+    border: 2px solid #FDA6D0;
+}
+#back-btn:hover {
+    color: #FDA6D0;
+    font-weight:bold;
+    background-color: white;
+    border: 2px solid #FDA6D0
+}
+.form-group{
+    margin-top:16px;
+}
+#cancel-btn{
+    font-size:18px;
+    font-weight:bold;
+    padding: 1.5%;
+    background-color: #F4313F;
+    border: 2px solid #F4313F;
+}
+#cancel-btn:hover {
+    color: #F4313F;
+    font-weight:bold;
+    background-color: white;
+    border: 2px solid #F4313F;
+}
+#confirm-btn{
+    font-size:18px;
+    font-weight:bold;
+    margin-top:5%;
+    padding: 1.5%;
+    background-color: #DC9A53;
+    border: 2px solid #DC9A53;
+}
+#confirm-btn:hover {
+    color: #DC9A53;
+    font-weight:bold;
+    background-color: white;
+    border: 2px solid #DC9A53;
 }
 .dashboard-cards {
     display: flex;

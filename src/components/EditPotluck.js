@@ -61,9 +61,9 @@ export default function EditPotluck() {
     return (
         <div className='add-event-dashboard'>
             <Navigation />
-            <div className='dashboard-cards'>
+            <div className='dashboard-cards' id='edit-event-buttons'>
                 <h2>What would you like to edit?</h2>
-                <Form onSubmit={handleSubmit(onSubmit)} className='shadow add-event-container'>
+                <Form className='shadow add-event-container'>
                     
                     <Input type="text" 
                     placeholder="Title" 
@@ -122,8 +122,8 @@ export default function EditPotluck() {
                     <ErrorMessage errors={errors} name="state" />
 
                     <FormGroup>
-                        <Button color ='primary' type="submit" style={{width:'30%', margin: '20px 10px 20px 10px', }}>Confirm Changes</Button>
-                        <Button onClick={() => push(`/events/${id}`)} color='danger' style={{width:'30%', margin: '20px 10px 20px 10px', }}>Cancel</Button>
+                        <Button id='confirm-btn' type="button" onClick={handleSubmit(onSubmit)} style={{width:'30%', margin: '20px 10px 20px 10px', }}>Confirm</Button>
+                        <Button id='cancel-btn' type='button' onClick={() => push(`/events/${id}`)} color='danger' style={{width:'30%', margin: '20px 10px 20px 10px', }}>Cancel</Button>
                     </FormGroup>
                     
                 </Form>
