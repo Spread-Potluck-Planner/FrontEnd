@@ -1,12 +1,16 @@
 import React from 'react'; 
-import { Nav, NavLink, NavItem, NavbarBrand } from 'reactstrap'
+import { Nav,NavLink, NavItem, NavbarBrand } from 'reactstrap'
 import logo from '../assets/logo.png'
-import {useHistory} from 'react-router-dom'
+import {useHistory, Link} from 'react-router-dom'
 import Dashboard from './Dashboard';
 
 
 const Navigation = () => {
   const id = localStorage.getItem('user')
+  const logOut = () => { 
+   localStorage.removeItem('token')
+   localStorage.removeItem('user')
+  }
     return (
         <div>
             <Nav>
@@ -14,19 +18,19 @@ const Navigation = () => {
             <NavbarBrand><img src={logo} id='nav-logo'/></NavbarBrand>
             <ul className="nav flex-column" >
                 <NavItem>
-                   <NavLink className="nav-menu" href={`/user/${id}`}>Account Home</NavLink> 
+                   <NavLink className="nav-menu" tag={Link} to={`/user/${id}`}>Account Home</NavLink> 
                 </NavItem>
                 <NavItem>
-                   <NavLink className="nav-menu" href='/'>Current Spreads</NavLink> 
+                   <NavLink className="nav-menu"  tag={Link} to={`/user/${id}`}>Current Spreads</NavLink> 
                 </NavItem>
                 <NavItem>
-                   <NavLink className="nav-menu" href='/addNewEvent'>Create a Spread</NavLink> 
+                   <NavLink className="nav-menu" tag={Link} to={`/user/${id}/add-event`}>Create a Spread</NavLink> 
                 </NavItem>
                 <NavItem>
-                   <NavLink className="nav-menu" href='/'>Edit Account</NavLink> 
+                   <NavLink className="nav-menu" tag={Link}  to='/'>Edit Account</NavLink> 
                 </NavItem>
                 <NavItem>
-                   <NavLink className="nav-menu" href='/'>Log Out</NavLink> 
+                   <NavLink className="nav-menu" onClick={() => logOut()} href='/'>Log Out</NavLink> 
                 </NavItem>
                 
                 </ul>
