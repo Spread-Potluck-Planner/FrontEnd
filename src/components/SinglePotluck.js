@@ -45,13 +45,37 @@ export default function SinglePotluck() {
         <div className='dashboard'>
             <Navigation />
             <div className='single-page-potluck'>
-            <Card>
+            <Card id='card-body-fixer-upper'>
                 <div className='targeting-background-div'>
                     <CardBody className='header-card-body'>
                         <CardTitle tag="h4">{event.event_name.charAt(0).toUpperCase() + event.event_name.slice(1)}</CardTitle>
                     </CardBody>
                     <img src={food_logo} alt="Card image cap" />
                     {/* Key: pk.eyJ1IjoiZXRoYnJhZHNoYXciLCJhIjoiY2tobnNhcXNhMGExczJ5bWlmMnllNjNyYSJ9.9yVsCdIiqTfD8B5xo_WEmQ */}
+                    {/* <CardBody>
+                        <CardText id='single-event-p'>
+                            <span className='event-info-labels'>Location:</span> {
+                            event.address 
+                            + ', ' + 
+                            event.city.charAt(0).toUpperCase() + event.city.slice(1)
+                            + ', ' + 
+                            event.state.charAt(0).toUpperCase() + event.state.slice(1)
+                            }   
+                        </CardText>
+                        <p className='event-info-border'></p>
+                        <CardText id='single-event-p'>
+                        <span className='event-info-labels'>Date:</span> {
+                            event.time 
+                            + ' ' +
+                            eventDate
+                            }
+                        </CardText>
+                    </CardBody> */}
+                    <div className='single-page-button'>
+                        <Button type='button' id='edit-btn' onClick={ () => push(`/events/edit/${id}`) } color='secondary'>Edit</Button>
+                        <Button type='button' id='delete-btn' onClick={ () => deleteEvent() } color='danger' >Delete</Button>
+                        <Button type='button' id='back-btn' onClick={ () => push(`/user/${event.organizer_id}`) } color='danger' >Back</Button>
+                    </div>
                     <CardBody>
                         <CardText id='single-event-p'>
                             <span className='event-info-labels'>Location:</span> {
@@ -71,11 +95,6 @@ export default function SinglePotluck() {
                             }
                         </CardText>
                     </CardBody>
-                    <div className='single-page-button'>
-                        <Button type='button' id='edit-btn' onClick={ () => push(`/events/edit/${id}`) } color='secondary'>Edit</Button>
-                        <Button type='button' id='delete-btn' onClick={ () => deleteEvent() } color='danger' >Delete</Button>
-                        <Button type='button' id='back-btn' onClick={ () => push(`/user/${event.organizer_id}`) } color='danger' >Back</Button>
-                    </div>
                 </div>
                 <Nav tabs>
                     <NavItem>
