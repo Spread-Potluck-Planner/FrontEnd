@@ -12,8 +12,10 @@
 
 /**** Navigation ****/
 #nav-logo {
-  width: 180px;
+  width: 90%;
+  margin-left: 10%;
   margin-bottom: 50px;
+  align-content:center;
 }
 #sidebar {
   width: 14%;
