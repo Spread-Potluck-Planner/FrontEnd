@@ -6,7 +6,7 @@ import { Button,
     Input, 
     Form, } from 'reactstrap';
 import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { ErrorMessage } from '@hookform/error-message';
 import { useSelector } from 'react-redux'
 import emailjs from 'emailjs-com';
@@ -15,6 +15,7 @@ import { API_KEY } from '../utils/reduxVariables'
 import fries from '../assets/fries.jpg'
 
 const EmailModal = (props) => {
+  const {id} = useParams()
   const event = useSelector(state => state.userState);
   const {
     className
@@ -26,7 +27,7 @@ const EmailModal = (props) => {
   
     });
   const { push } = useHistory()
-  const id = localStorage.getItem('user')
+
 
   const onSubmit = (data) => {
       console.log(data)
@@ -34,7 +35,7 @@ const EmailModal = (props) => {
           email:data.email, 
           message: data.message, 
           organizer: event.full_name,
-          spread_event: 'need url from event'
+          spread_event: `https://spread-app.netlify.app/events/${id}`
       }
 
       emailjs.send("service_t9ou68h","template_8w63fep", emailToSend, API_KEY)
@@ -45,7 +46,7 @@ const EmailModal = (props) => {
         console.log("There was an error with your invite", error)
     })
 
-    push(`/user/${id}`)
+    push(`/user/${event.user_id}`)
    }
 
 
@@ -57,6 +58,7 @@ const EmailModal = (props) => {
 
   return (
     <div className='dashboard-cards'> 
+    {console.log(id)}
       <Modal isOpen={modal} fade={false} toggle={toggle} className={className} >
         <ModalHeader toggle={toggle} >
             <div style={{display:'flex', flexDirection: 'row'}}>
