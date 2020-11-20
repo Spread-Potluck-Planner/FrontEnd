@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react'
 import Navigation from './Navigation'
 import EventCard from './EventCard'
 import { useDispatch} from 'react-redux'
+import {useHistory} from 'react-router-dom'
 import {Button} from 'reactstrap'
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 import { FETCH_USER_SUCCESS } from '../actions/userActions'
@@ -22,6 +23,7 @@ const Dashboard = () => {
     const[userData,setUserData] = useState(defaultUser)
     const id = localStorage.getItem('user')
     const dispatch = useDispatch()
+    const {push} =useHistory()
 
     const emptyMessage = "There are no events listed for this user"
 
@@ -49,7 +51,7 @@ const Dashboard = () => {
             <img src={emptyEvents} style={{width: "30%", marginBottom: '20px'}} />
             <h4>Opps... looks like you don't have any upcoming events.</h4>
             <p style={{fontWeight: 'bold', fontSize:'18px'}}>Create one now</p>
-            <Button color='primary'>New Spread</Button>
+            <Button color='primary' onClick={()=> push(`/user/${id}/add-event`)}>New Spread</Button>
         </div>
         
         )

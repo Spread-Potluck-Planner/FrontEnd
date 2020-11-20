@@ -27,7 +27,7 @@ const Navigation = () => {
                    <NavLink className="nav-menu" tag={Link} to={`/user/${id}/add-event`}>Create a Spread</NavLink> 
                 </NavItem>
                 <NavItem>
-                   <NavLink className="nav-menu" tag={Link}  to='/'>Edit Account</NavLink> 
+                   <NavLink className="nav-menu" tag={Link}  to={`/user/${id}/edit`}>Edit Account</NavLink> 
                 </NavItem>
                 <NavItem>
                    <NavLink className="nav-menu" onClick={() => logOut()} href='/'>Log Out</NavLink> 
