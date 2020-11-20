@@ -6,6 +6,7 @@ import {Col, Form, Button, Label, Input, FormGroup} from 'reactstrap';
 import {useDispatch} from 'react-redux'
 import {setLoggedIn} from '../actions/loginActions'
 import {useHistory} from 'react-router-dom';
+import Navigation from '../components/Navigation'
 import '../styling/login.css'
 
 export default function Login() {
@@ -34,39 +35,43 @@ export default function Login() {
     }
 
     return (
-        <div className='login-form'>
-            <Form onSubmit={handleSubmit(submitHandler)}>
-                <FormGroup>
-                    <Col md={12}>
-                    <Label for='username'>User Name</Label>
-                    <Input 
-                        name='username'
-                        type='text' 
-                        placeholder='User Name'
-                        invalid={errors.username ? true : false}
-                        innerRef={register({required: 'Username is required'})}
-                    />
-                    <ErrorMessage errors={errors} name='password' />
-                </Col>    
-                </FormGroup>
-                <FormGroup>
-                    <Col md={12}>
-                    <Label for='password'>Password</Label>
-                    <Input 
-                        name='password'
-                        type='password' 
-                        placeholder='Password'
-                        invalid={errors.password ? true : false}
-                        innerRef={register({required: 'Passowrd is required'})}
-                    />
-                    <ErrorMessage errors={errors} name='password' />
-                    </Col>
-                </FormGroup>
-                <div className='login-btns'>
-                    <Button type='submit' size='lg' color='success'>Sign In</Button>
-                    <Button type='button' size='lg' outline color='danger' onClick={() => push('/register')}>Sign Up</Button>
-                </div>
-            </Form>
+        <div className='login-page'>
+            <Navigation />
+            <div className='login-form'>
+            <h2>Please Log In</h2>
+                <Form onSubmit={handleSubmit(submitHandler)}>
+                    <FormGroup>
+                        <Col md={12}>
+                        <Label for='username'>User Name</Label>
+                        <Input 
+                            name='username'
+                            type='text' 
+                            placeholder='User Name'
+                            invalid={errors.username ? true : false}
+                            innerRef={register({required: 'Username is required'})}
+                        />
+                        <ErrorMessage errors={errors} name='password' />
+                    </Col>    
+                    </FormGroup>
+                    <FormGroup>
+                        <Col md={12}>
+                        <Label for='password'>Password</Label>
+                        <Input 
+                            name='password'
+                            type='password' 
+                            placeholder='Password'
+                            invalid={errors.password ? true : false}
+                            innerRef={register({required: 'Passowrd is required'})}
+                        />
+                        <ErrorMessage errors={errors} name='password' />
+                        </Col>
+                    </FormGroup>
+                    <div className='login-btns'>
+                        <Button type='submit' id='sign-in-btn' size='lg'>Sign In</Button>
+                        <Button type='button' id='sign-up-btn' size='lg' onClick={() => push('/register')}>Sign Up</Button>
+                    </div>
+                </Form>
+            </div>
         </div>
     )
 }
