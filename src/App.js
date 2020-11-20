@@ -10,6 +10,7 @@ import EditPotluck from './components/EditPotluck'
 import AddNewEvent from './components/AddNewEvent'
 
 import EmailModal from './components/EmailModal'
+import EditUserForm from './components/EditUserForm'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route exact path='/' component={Login} />
       <Route path='/register' component={Register} />
       <PrivateRoute exact path='/user/:id' component={Dashboard} />
+      <PrivateRoute exact path='/user/:id/edit' component={EditUserForm} />
 
       <PrivateRoute exact path='/events/:id' component={SinglePotluck} />
       <PrivateRoute exact path='/events/edit/:id' component={EditPotluck} />

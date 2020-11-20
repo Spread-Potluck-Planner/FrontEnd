@@ -15,7 +15,7 @@
   width: 90%;
   margin-left: 10%;
   margin-bottom: 50px;
-  align-content:center;
+  align-content: center;
 }
 #sidebar {
   width: 14%;
@@ -92,4 +92,29 @@
 #share-form textarea {
   margin-top: 5px;
   height: 150px;
+}
+
+.update-account {
+  padding: 1%;
+  width: 50%;
+  margin: 0 auto;
+}
+
+#btn-group {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+#edit-form-group {
+  display: flex;
+}
+#edit-form-group label {
+  margin: 5px;
+  font-size: 18px;
+}
+#btn-group Button {
+  width: 150px;
+  margin-top: 20px;
+  color: white;
 }
