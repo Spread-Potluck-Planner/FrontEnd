@@ -18,12 +18,25 @@ const EditUserForm = () => {
       const onSubmit = (data) => {
         updateUser(data)
       }
+
+      const deleteUser = () => { 
+          axiosWithAuth()
+          .delete(`https://potluck-planner-bw.herokuapp.com/users/${id}`)
+          .then((response) => { 
+              alert("Your account has been removed.")
+              push('/')
+          })
+          .catch((error) => { 
+              console.log("There was an error deleting the user.", error)
+          })
+      }
   
       const updateUser= (user) => {
           axiosWithAuth()
               .put(`https://potluck-planner-bw.herokuapp.com/users/${id}`, user)
               .then(res => {
                   alert("Your name has been updated.")
+                  localStorage.removeItem('token')
                   push('/')
               })
               .catch(err => {
@@ -50,7 +63,7 @@ const EditUserForm = () => {
                   <ErrorMessage errors={errors} name='full_name' />
                   <div id='btn-group'>
                     <Button type='submit' color='warning'>Submit</Button>
-                    <Button type='button' color='danger' onClick={() => push('/')}>Cancel</Button>
+                    <Button type='button' color='danger' onClick={() => deleteUser()}>Delete User</Button>
                   </div>
               </Form>
             </div>
